@@ -33,7 +33,7 @@ class Hangman {
 
         for (let index = 0; index < wordLength; index++) {
             let letterElement = document.createElement("span");
-            letterElement.innerHTML = " _ ";
+            letterElement.innerHTML = "&nbsp;";
             wordContainerElement.append(letterElement);
         }
         let _this = this;
@@ -107,16 +107,15 @@ class Hangman {
         overlayElementSubElementResult.classList.toggle("hide");
     }
     listenLetter(e, _this) {
-        let wrongLettersElement = document.querySelector(".wrong-letters")
+        let wrongLettersElement = document.querySelector(".wrong-letters .letters")
         let letter = e.code.replace("Key", "");
-        if (e.code.charCodeAt(0) >= 65 && e.code.charCodeAt(0) <= 90) {
+        if (letter.charCodeAt(0) >= 65 && letter.charCodeAt(0) <= 90) {
             if (!this.pressedLetters.includes(letter)) {
                 if (!this.word.includes(letter.toLowerCase())) {
                     this.hangmanStatus++
                     this.wrongLetters.push(letter)
                     wrongLettersElement.innerHTML = this.wrongLetters.join(" , ")
                     this.handleDrawHangman();
-
                 } else {
                     this.rightLetters.push(letter)
                     this.handleWriteLetter()

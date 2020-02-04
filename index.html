@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style/css/style.css">
 </head>
 
@@ -38,22 +39,31 @@
                 </div>
             </div>
         </div>
-        <div class="wrong-letters">
+        <div class="game-info">
+            <div class="wrong-letters">
+                <h3>Wrong guessed</h3>
+                <span class="letters"></span>
+            </div>
+            <div class="word">
 
+            </div>
+            <div class="reset-ctn">
+                <button class="btn restart">Restart</button>
+            </div>
         </div>
-        <div class="word">
-
-        </div>
-        <button class="restart">Restart</button>
     </div>
     <div class="overlay hide">
         <div class="win hide">
             <h3>Congrats! You Won!</h3>
-            <button class="restart">Restart</button>
+            <div>
+                <button class="btn restart">Restart</button>
+            </div>
         </div>
         <div class="lose hide">
             <h3>Damn! You LOST!</h3>
-            <button class="restart">Restart</button>
+            <div>
+                <button class="btn restart">Restart</button>
+            </div>
         </div>
     </div>
 

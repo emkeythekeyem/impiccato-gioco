@@ -1,106 +1,195 @@
-.hangman {
-  width: 250px;
-  height: 200px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 2fr; }
-  .hangman .staff-left {
-    grid-column-start: 1;
-    grid-column-end: 1;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    position: relative; }
-    .hangman .staff-left:after {
-      content: "";
-      position: absolute;
-      height: 85%;
-      width: 10px;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      background: black; }
-    .hangman .staff-left:before {
-      content: "";
-      position: absolute;
-      top: 15%;
+:root {
+  --color-one: #f20587;
+  --color-two: #96d9c6;
+  --color-three: #f2b705;
+  --color-four: #f25c05;
+  --color-five: #f23d3d;
+  --font-size: 32px;
+  --color-success: #04d94f;
+  --color-error: #ef233c; }
+
+body,
+html {
+  font-family: "Open Sans", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  position: relative;
+  background: var(--color-two); }
+
+.game {
+  min-width: 350px;
+  width: 50%;
+  margin: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column; }
+  .game .hangman {
+    width: 250px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr; }
+    .game .hangman .staff-left {
+      grid-column-start: 1;
+      grid-column-end: 1;
+      grid-row-start: 1;
+      grid-row-end: 3;
+      position: relative; }
+      .game .hangman .staff-left:after {
+        content: "";
+        position: absolute;
+        height: 85%;
+        width: 10px;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: black; }
+      .game .hangman .staff-left:before {
+        content: "";
+        position: absolute;
+        top: 15%;
+        width: 100%;
+        height: 10px;
+        bottom: 0;
+        right: -50%;
+        background: black;
+        z-index: 9999; }
+    .game .hangman .staff-above {
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 1;
+      position: relative; }
+      .game .hangman .staff-above:after {
+        content: "";
+        position: absolute;
+        top: 45%;
+        height: 55%;
+        width: 10px;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: black; }
+    .game .hangman .man {
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 2;
+      grid-row-end: 2;
+      position: relative; }
+      .game .hangman .man .head {
+        top: 0;
+        width: 25%;
+        height: 25%;
+        border: 1px solid black;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%); }
+      .game .hangman .man .chest {
+        width: 1px;
+        height: 50%;
+        background: black;
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translateX(-50%); }
+      .game .hangman .man .l-hand {
+        width: 1px;
+        height: 25%;
+        background: black;
+        position: absolute;
+        top: 25%;
+        left: 40%;
+        transform: rotate(45deg); }
+      .game .hangman .man .r-hand {
+        width: 1px;
+        height: 25%;
+        background: black;
+        position: absolute;
+        top: 25%;
+        right: 40%;
+        transform: rotate(-45deg); }
+      .game .hangman .man .l-leg {
+        width: 1px;
+        height: 25%;
+        background: black;
+        position: absolute;
+        top: 70%;
+        left: 40%;
+        transform: rotate(45deg); }
+      .game .hangman .man .r-leg {
+        width: 1px;
+        height: 25%;
+        background: black;
+        position: absolute;
+        top: 70%;
+        right: 40%;
+        transform: rotate(-45deg); }
+  .game .game-info {
+    width: 100%;
+    margin: 16px 0; }
+    .game .game-info .wrong-letters {
+      font-weight: bold; }
+    .game .game-info .word {
       width: 100%;
-      height: 10px;
-      bottom: 0;
-      right: -50%;
-      background: black;
-      z-index: 9999; }
-  .hangman .staff-above {
-    grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 1;
-    position: relative; }
-    .hangman .staff-above:after {
-      content: "";
-      position: absolute;
-      top: 45%;
-      height: 55%;
-      width: 10px;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      background: black; }
-  .hangman .man {
-    grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: 2;
-    position: relative; }
-    .hangman .man .head {
-      top: 0;
-      width: 25%;
-      height: 25%;
-      border: 1px solid black;
-      border-radius: 50%;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%); }
-    .hangman .man .chest {
-      width: 1px;
-      height: 50%;
-      background: black;
-      position: absolute;
-      top: 25%;
-      left: 50%;
-      transform: translateX(-50%); }
-    .hangman .man .l-hand {
-      width: 1px;
-      height: 25%;
-      background: black;
-      position: absolute;
-      top: 25%;
-      left: 40%;
-      transform: rotate(45deg); }
-    .hangman .man .r-hand {
-      width: 1px;
-      height: 25%;
-      background: black;
-      position: absolute;
-      top: 25%;
-      right: 40%;
-      transform: rotate(-45deg); }
-    .hangman .man .l-leg {
-      width: 1px;
-      height: 25%;
-      background: black;
-      position: absolute;
-      top: 70%;
-      left: 40%;
-      transform: rotate(45deg); }
-    .hangman .man .r-leg {
-      width: 1px;
-      height: 25%;
-      background: black;
-      position: absolute;
-      top: 70%;
-      right: 40%;
-      transform: rotate(-45deg); }
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      justify-items: center; }
+      .game .game-info .word span {
+        text-align: center;
+        min-width: var(--font-size);
+        font-size: var(--font-size);
+        margin: 0 8px;
+        font-weight: bold;
+        position: relative;
+        border-bottom: 2px solid var(--color-five); }
+    .game .game-info .reset-ctn {
+      width: 100%;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      justify-items: center; }
 
 .hide {
   opacity: 0; }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 9999; }
+  .overlay .win,
+  .overlay .lose {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    align-content: center; }
+  .overlay .win {
+    background-color: var(--color-success); }
+  .overlay .lose {
+    background-color: var(--color-error); }
+
+.btn {
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: bold;
+  border: none;
+  padding: 8px 24px;
+  background: var(--color-four);
+  color: white; }
+  .btn:hover, .btn:focus, .btn:active {
+    background: var(--color-five); }
