@@ -9,40 +9,52 @@
 </head>
 
 <body>
+    <div class="game hide">
+        <div class="hangman">
+            <div class="staff-left">
 
-    <div class="hangman">
-        <div class="staff-left">
+            </div>
+            <div class="staff-above">
+
+            </div>
+            <div class="man">
+                <div class="head hide">
+
+                </div>
+                <div class="chest hide">
+
+                </div>
+                <div class="l-hand hide">
+
+                </div>
+                <div class="r-hand hide">
+
+                </div>
+                <div class="l-leg hide">
+
+                </div>
+                <div class="r-leg hide">
+
+                </div>
+            </div>
+        </div>
+        <div class="wrong-letters">
 
         </div>
-        <div class="staff-above">
+        <div class="word">
 
         </div>
-        <div class="man">
-            <div class="head hide">
-
-            </div>
-            <div class="chest hide">
-
-            </div>
-            <div class="l-hand hide">
-
-            </div>
-            <div class="r-hand hide">
-
-            </div>
-            <div class="l-leg hide">
-
-            </div>
-            <div class="r-leg hide">
-
-            </div>
-        </div>
+        <button class="restart">Restart</button>
     </div>
-    <div class="wrong-letters">
-
-    </div>
-    <div class="word">
-
+    <div class="overlay hide">
+        <div class="win hide">
+            <h3>Congrats! You Won!</h3>
+            <button class="restart">Restart</button>
+        </div>
+        <div class="lose hide">
+            <h3>Damn! You LOST!</h3>
+            <button class="restart">Restart</button>
+        </div>
     </div>
 
     <script src="./parole.js" type="text/javascript"></script>

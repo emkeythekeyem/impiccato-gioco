@@ -5,6 +5,7 @@ class Hangman {
         this.rightLetters = [];
         this.hangmanStatus = 0;
         this.word = "";
+        this.finalResult = "";
     }
     handleGetRandomWord() {
         let wordsFiltered = words.filter(function (element) {
@@ -14,8 +15,20 @@ class Hangman {
         this.word = wordsFiltered[randomIndex].split("");
     }
     handleDrawHiddenWord() {
+
+        this.pressedLetters = [];
+        this.wrongLetters = [];
+        this.rightLetters = [];
+        this.hangmanStatus = 0;
+        this.word = "";
+        this.finalResult = "";
+
+        let gameElement = document.querySelector(".game")
+        gameElement.classList.remove("hide")
+
         this.handleGetRandomWord();
         let wordContainerElement = document.querySelector(".word");
+        wordContainerElement.innerHTML = "";
         let wordLength = this.word.length;
 
         for (let index = 0; index < wordLength; index++) {
@@ -39,6 +52,13 @@ class Hangman {
                 letterElements[index].innerHTML = rightLetter;
             })
         })
+
+        console.log(this.rightLetters.length, [...new Set(this.word)].length)
+
+        if (this.rightLetters.length === [...new Set(this.word)].length && this.hangmanStatus <= 5) {
+            this.handleWin()
+        }
+
     }
     handleDrawHangman() {
         let hangmanElement = document.querySelector(".hangman")
@@ -61,9 +81,30 @@ class Hangman {
                 break;
             case 6:
                 document.querySelector(".r-leg").classList.toggle("hide")
+                this.handleLost()
                 break;
         }
-        console.log(this.hangmanStatus + "tentativi rimasti")
+
+    }
+    handleWin() {
+        let gameElement = document.querySelector(".game")
+        gameElement.classList.toggle("hide")
+        this.toggleOverlay("win")
+        this.finalResult = "win"
+    }
+
+    handleLost() {
+        let gameElement = document.querySelector(".game")
+        gameElement.classList.toggle("hide");
+        this.toggleOverlay("lose")
+        this.finalResult = "lost"
+    }
+
+    toggleOverlay(status) {
+        let overlayElement = document.querySelector(".overlay")
+        let overlayElementSubElementResult = document.querySelector(`.overlay .${status}`)
+        overlayElement.classList.toggle("hide");
+        overlayElementSubElementResult.classList.toggle("hide");
     }
     listenLetter(e, _this) {
         let wrongLettersElement = document.querySelector(".wrong-letters")
@@ -86,12 +127,12 @@ class Hangman {
             }
         }
     }
-    handleWrong() {}
-
-    handleRight() {}
 }
 
 document.addEventListener("DOMContentLoaded", event => {
     let hangman = new Hangman();
     hangman.handleDrawHiddenWord();
+    document.querySelector(".restart").addEventListener("click", () => {
+        hangman.handleDrawHiddenWord()
+    })
 });
