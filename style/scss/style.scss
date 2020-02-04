@@ -1,0 +1,121 @@
+.hangman {
+  width: 250px;
+  height: 200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
+  .staff-left {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      height: 85%;
+      width: 10px;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: black;
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      top: 15%;
+      width: 100%;
+      height: 10px;
+      bottom: 0;
+      right: -50%;
+      background: black;
+      z-index: 9999;
+    }
+  }
+  .staff-above {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 1;
+
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 45%;
+      height: 55%;
+      width: 10px;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: black;
+    }
+  }
+  .man {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    position: relative;
+    .head {
+      top: 0;
+      width: 25%;
+      height: 25%;
+      border: 1px solid black;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .chest {
+      width: 1px;
+      height: 50%;
+      background: black;
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .l-hand {
+      width: 1px;
+      height: 25%;
+      background: black;
+      position: absolute;
+      top: 25%;
+      left: 40%;
+      transform: rotate(45deg);
+    }
+    .r-hand {
+      width: 1px;
+      height: 25%;
+      background: black;
+      position: absolute;
+      top: 25%;
+      right: 40%;
+      transform: rotate(-45deg);
+    }
+    .l-leg {
+      width: 1px;
+      height: 25%;
+      background: black;
+      position: absolute;
+      top: 70%;
+      left: 40%;
+      transform: rotate(45deg);
+    }
+    .r-leg {
+      width: 1px;
+      height: 25%;
+      background: black;
+      position: absolute;
+      top: 70%;
+      right: 40%;
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.hide {
+  opacity: 0;
+}
