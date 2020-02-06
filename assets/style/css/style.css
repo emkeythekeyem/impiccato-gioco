@@ -158,6 +158,8 @@ html {
       justify-items: center; }
 
 .hide {
+  display: none;
+  visibility: none;
   opacity: 0; }
 
 .overlay {
@@ -178,6 +180,11 @@ html {
     justify-items: center;
     justify-content: center;
     align-content: center; }
+    .overlay .win.hide,
+    .overlay .lose.hide {
+      display: none;
+      visibility: none;
+      opacity: 0; }
   .overlay .win {
     background-color: var(--color-success); }
   .overlay .lose {

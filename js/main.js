@@ -5,7 +5,6 @@ class Hangman {
         this.rightLetters = [];
         this.hangmanStatus = 0;
         this.word = "";
-        this.finalResult = "";
     }
     handleGetRandomWord() {
         let wordsFiltered = words.filter(function (element) {
@@ -15,16 +14,24 @@ class Hangman {
         this.word = wordsFiltered[randomIndex].split("");
     }
     handleDrawHiddenWord() {
-
         this.pressedLetters = [];
         this.wrongLetters = [];
         this.rightLetters = [];
         this.hangmanStatus = 0;
         this.word = "";
-        this.finalResult = "";
+
+        let wrongLettersElement = document.querySelector(".wrong-letters .letters")
+        wrongLettersElement.innerHTML = "";
 
         let gameElement = document.querySelector(".game")
         gameElement.classList.remove("hide")
+
+        let overlayElement = document.querySelector(".overlay")
+        let overlayElementSubElementResultLose = document.querySelector(`.overlay .lose`)
+        let overlayElementSubElementResultWin = document.querySelector(`.overlay .win`)
+        overlayElement.classList.add("hide");
+        overlayElementSubElementResultLose.classList.add("hide");
+        overlayElementSubElementResultWin.classList.add("hide");
 
         this.handleGetRandomWord();
         let wordContainerElement = document.querySelector(".word");
@@ -37,7 +44,6 @@ class Hangman {
             wordContainerElement.append(letterElement);
         }
         let _this = this;
-        console.log(this.word)
         document.addEventListener("keypress", e => this.listenLetter(e, _this));
     }
     handleWriteLetter() {
@@ -52,8 +58,6 @@ class Hangman {
                 letterElements[index].innerHTML = rightLetter;
             })
         })
-
-        console.log(this.rightLetters.length, [...new Set(this.word)].length)
 
         if (this.rightLetters.length === [...new Set(this.word)].length && this.hangmanStatus <= 5) {
             this.handleWin()
@@ -90,16 +94,12 @@ class Hangman {
         let gameElement = document.querySelector(".game")
         gameElement.classList.toggle("hide")
         this.toggleOverlay("win")
-        this.finalResult = "win"
     }
-
     handleLost() {
         let gameElement = document.querySelector(".game")
         gameElement.classList.toggle("hide");
         this.toggleOverlay("lose")
-        this.finalResult = "lost"
     }
-
     toggleOverlay(status) {
         let overlayElement = document.querySelector(".overlay")
         let overlayElementSubElementResult = document.querySelector(`.overlay .${status}`)
@@ -131,7 +131,11 @@ class Hangman {
 document.addEventListener("DOMContentLoaded", event => {
     let hangman = new Hangman();
     hangman.handleDrawHiddenWord();
-    document.querySelector(".restart").addEventListener("click", () => {
-        hangman.handleDrawHiddenWord()
+    document.querySelectorAll(".restart").forEach((el) => {
+        el.addEventListener("click", () => {
+
+
+            hangman.handleDrawHiddenWord()
+        })
     })
 });
