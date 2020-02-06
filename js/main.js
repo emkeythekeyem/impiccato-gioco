@@ -20,6 +20,7 @@ class Hangman {
         this.hangmanStatus = 0;
         this.word = "";
 
+
         let wrongLettersElement = document.querySelector(".wrong-letters .letters")
         wrongLettersElement.innerHTML = "";
 
